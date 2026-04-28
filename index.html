@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryan Kumar (Ario2006) — Portfolio</title>
+    <style>
+        /* ===== MODERN DARK THEME ===== */
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #151c2c;
+            --bg-card-hover: #1a2236;
+            --border: #1e2a3a;
+            --border-hover: #2d3f56;
+            --text-main: #e2e8f0;
+            --text-muted: #7a8ba3;
+            --text-dim: #4a5568;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --accent-hover: #60a5fa;
+            --green: #10b981;
+            --green-glow: rgba(16, 185, 129, 0.15);
+            --orange: #f97316;
+            --yellow: #eab308;
+            --purple: #a78bfa;
+            --pink: #f472b6;
+            --btn-bg: #1e293b;
+            --btn-hover: #283548;
+            --btn-primary: #3b82f6;
+            --btn-primary-hover: #2563eb;
+            --gradient-1: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            --gradient-2: linear-gradient(135deg, #10b981, #3b82f6);
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 20px rgba(59,130,246,0.1);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: var(--accent); transition: color 0.2s; }
+        a:hover { color: var(--accent-hover); text-decoration: none; }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-grid {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(59,130,246,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139,92,246,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(16,185,129,0.02) 0%, transparent 50%);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 16px; width: 100%; }
+        .header-logo svg { fill: var(--accent); width: 32px; height: 32px; transition: fill 0.3s; }
+        .header-logo:hover svg { fill: var(--accent-hover); }
+        .header-nav { display: flex; gap: 8px; margin-left: auto; }
+        .header-nav-link {
+            color: var(--text-muted); font-size: 13px; padding: 6px 12px;
+            border-radius: 6px; transition: 0.2s; font-weight: 500;
+        }
+        .header-nav-link:hover { color: var(--text-main); background: var(--btn-bg); }
+        .mobile-menu-btn { display: none; background: none; border: none; fill: var(--text-muted); cursor: pointer; }
+        .header-logo-container { display: flex; justify-content: space-between; width: 100%; align-items: center; }
+
+        /* ===== MAIN LAYOUT ===== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            display: flex;
+            gap: 32px;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar { width: 296px; flex-shrink: 0; }
+        .sidebar-sticky { position: sticky; top: 80px; }
+        .avatar-wrapper { position: relative; margin-bottom: 20px; }
+        .avatar {
+            width: 100%; max-width: 200px;
+            height: auto; aspect-ratio: 1;
+            border-radius: 50%;
+            border: 3px solid var(--border);
+            object-fit: cover;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .avatar:hover { border-color: var(--accent); transform: scale(1.02); }
+        .status-indicator {
+            position: absolute; bottom: 12px; right: 70px;
+            width: 20px; height: 20px; background: var(--green);
+            border-radius: 50%; border: 3px solid var(--bg-primary);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+        }
+
+        .vcard-names { margin-bottom: 8px; }
+        .vcard-fullname { font-size: 24px; font-weight: 700; color: var(--text-main); letter-spacing: -0.02em; }
+        .vcard-username { font-size: 18px; font-weight: 400; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+        .user-profile-bio { margin-bottom: 20px; font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+        .btn-profile {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; text-align: center;
+            background: var(--gradient-1); border: none;
+            color: #fff; padding: 10px 16px; border-radius: 10px;
+            font-weight: 600; cursor: pointer; transition: 0.3s; margin-bottom: 20px;
+            font-size: 14px; letter-spacing: 0.02em;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+        }
+        .btn-profile:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(59,130,246,0.4); text-decoration: none; color: #fff; }
+        .btn-profile svg { width: 16px; height: 16px; fill: currentColor; }
+
+        .vcard-details {
+            list-style: none; margin-bottom: 24px;
+            border-bottom: 1px solid var(--border); padding-bottom: 20px;
+        }
+        .vcard-details li {
+            display: flex; align-items: center; gap: 10px;
+            margin-top: 8px; color: var(--text-muted); font-size: 13px; word-break: break-all;
+        }
+        .vcard-details svg { fill: var(--text-dim); width: 16px; height: 16px; flex-shrink: 0; }
+
+        .skills-section { margin-bottom: 24px; }
+        .skills-section h2 { font-size: 13px; font-weight: 600; margin-bottom: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+        .skills-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+        .badge {
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 4px 12px; border-radius: 6px;
+            font-size: 12px; font-weight: 500; color: var(--text-muted);
+            white-space: nowrap; transition: 0.2s;
+        }
+        .badge:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+        .badge-ai { border-color: rgba(139,92,246,0.3); color: var(--purple); }
+        .badge-ai:hover { border-color: var(--purple); background: rgba(139,92,246,0.1); }
+        .badge-web { border-color: rgba(59,130,246,0.3); color: var(--accent); }
+        .badge-web:hover { border-color: var(--accent); background: var(--accent-glow); }
+        .badge-data { border-color: rgba(16,185,129,0.3); color: var(--green); }
+        .badge-data:hover { border-color: var(--green); background: var(--green-glow); }
+
+        /* ===== MAIN CONTENT ===== */
+        .content { flex-grow: 1; min-width: 0; }
+
+        /* Tabs */
+        .UnderlineNav {
+            display: flex; border-bottom: 1px solid var(--border);
+            margin-bottom: 24px; gap: 4px;
+        }
+        .UnderlineNav-item {
+            padding: 10px 16px; font-size: 14px; color: var(--text-main); cursor: default;
+            border-bottom: 2px solid var(--accent); display: flex; align-items: center;
+            gap: 8px; font-weight: 600;
+        }
+        .UnderlineNav-item svg { fill: var(--text-muted); width: 16px; height: 16px; }
+        .repo-count {
+            background: var(--accent-glow); color: var(--accent);
+            border-radius: 2em; padding: 0 8px; font-size: 12px; font-weight: 600;
+        }
+
+        /* ===== FILTER BAR ===== */
+        .repo-filter-bar {
+            display: flex; gap: 16px; margin-bottom: 24px; align-items: center;
+            flex-wrap: wrap; padding-bottom: 20px; border-bottom: 1px solid var(--border);
+        }
+        .local-search {
+            background: var(--bg-secondary); border: 1px solid var(--border);
+            padding: 8px 14px; border-radius: 10px; color: var(--text-main);
+            width: 100%; max-width: 320px; font-size: 14px; outline: none;
+            transition: 0.3s; font-family: inherit;
+        }
+        .local-search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+        .local-search::placeholder { color: var(--text-dim); }
+
+        .filter-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+        .filter-btn {
+            background: var(--btn-bg); border: 1px solid var(--border);
+            color: var(--text-muted); padding: 6px 16px; border-radius: 8px;
+            font-size: 13px; font-weight: 500; cursor: pointer; transition: 0.2s;
+            font-family: inherit;
+        }
+        .filter-btn:hover { background: var(--btn-hover); color: var(--text-main); border-color: var(--border-hover); }
+        .filter-btn.active {
+            background: var(--accent); color: #fff; border-color: var(--accent);
+            box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+        }
+
+        /* ===== REPO GRID ===== */
+        .repo-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 20px; margin-bottom: 40px;
+        }
+
+        /* ===== REPO CARD ===== */
+        .repo-card {
+            border: 1px solid var(--border); border-radius: 12px;
+            background: var(--bg-card); display: flex; flex-direction: column;
+            cursor: pointer; transition: all 0.3s ease; overflow: hidden;
+            position: relative;
+        }
+        .repo-card::before {
+            content: ''; position: absolute; inset: 0;
+            border-radius: 12px; padding: 1px;
+            background: var(--gradient-1); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude; -webkit-mask-composite: xor;
+            opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1;
+        }
+        .repo-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg), var(--shadow-glow); }
+        .repo-card:hover::before { opacity: 1; }
+
+        .card-cover-image {
+            width: 100%; height: 160px; object-fit: cover;
+            border-bottom: 1px solid var(--border); transition: transform 0.5s;
+        }
+        .repo-card:hover .card-cover-image { transform: scale(1.05); }
+        .card-image-wrapper { overflow: hidden; }
+
+        .repo-card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .repo-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; gap: 8px; }
+        .repo-title-group { display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+        .repo-title-group svg { fill: var(--text-dim); width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; }
+        .repo-title { font-size: 15px; font-weight: 600; color: var(--accent); word-break: break-word; letter-spacing: -0.01em; }
+        .repo-badge {
+            border: 1px solid var(--border); color: var(--text-dim); font-size: 11px;
+            padding: 2px 10px; border-radius: 6px; line-height: 18px; white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .repo-desc {
+            color: var(--text-muted); font-size: 13px; margin-bottom: 16px; flex-grow: 1;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+            line-height: 1.6;
+        }
+
+        .repo-tags { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+        .topic-tag {
+            background: var(--accent-glow); color: var(--accent); font-size: 12px;
+            font-weight: 500; padding: 2px 12px; border-radius: 6px; line-height: 22px;
+            white-space: nowrap; transition: 0.2s;
+        }
+
+        .repo-footer { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--text-dim); flex-wrap: wrap; }
+        .lang-color { width: 12px; height: 12px; border-radius: 50%; display: inline-block; vertical-align: middle; }
+        .lang-python { background: var(--yellow); }
+        .lang-tableau { background: var(--orange); }
+        .lang-looker { background: var(--accent); }
+        .lang-excel { background: var(--green); }
+
+        /* ===== TECH STACK GRID ===== */
+        .tech-stack-section {
+            border: 1px solid var(--border); border-radius: 12px;
+            padding: 24px; margin-bottom: 32px; background: var(--bg-card);
+        }
+        .tech-stack-title {
+            font-size: 16px; font-weight: 600; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .tech-stack-title svg { fill: var(--accent); width: 18px; height: 18px; }
+        .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .tech-category {
+            background: var(--bg-secondary); border: 1px solid var(--border);
+            border-radius: 10px; padding: 16px; transition: 0.3s;
+        }
+        .tech-category:hover { border-color: var(--border-hover); }
+        .tech-cat-header {
+            font-size: 13px; font-weight: 600; margin-bottom: 12px;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .tech-cat-emoji { font-size: 16px; }
+        .tech-items { display: flex; flex-direction: column; gap: 8px; }
+        .tech-item { display: flex; align-items: center; justify-content: space-between; }
+        .tech-item-name { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+        .tech-bar-bg {
+            width: 60%; height: 6px; background: var(--bg-primary);
+            border-radius: 3px; overflow: hidden;
+        }
+        .tech-bar {
+            height: 100%; border-radius: 3px; transition: width 1.5s ease;
+            width: 0;
+        }
+        .tech-bar.bar-ai { background: var(--gradient-1); }
+        .tech-bar.bar-web { background: linear-gradient(90deg, var(--accent), #38bdf8); }
+        .tech-bar.bar-data { background: linear-gradient(90deg, var(--green), #34d399); }
+
+        /* ===== LEETCODE STATS ===== */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+        .stat-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 20px; text-align: center;
+            transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .stat-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+            height: 3px; border-radius: 0 0 12px 12px;
+        }
+        .stat-card:nth-child(1)::after { background: var(--gradient-1); }
+        .stat-card:nth-child(2)::after { background: var(--gradient-2); }
+        .stat-card:nth-child(3)::after { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+        .stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .stat-number {
+            font-size: 32px; font-weight: 800; letter-spacing: -0.03em;
+            background: var(--gradient-1); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-card:nth-child(2) .stat-number {
+            background: var(--gradient-2); -webkit-background-clip: text; background-clip: text;
+        }
+        .stat-card:nth-child(3) .stat-number {
+            background: linear-gradient(90deg, var(--orange), var(--yellow));
+            -webkit-background-clip: text; background-clip: text;
+        }
+        .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 500; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* ===== CONTRIBUTION GRAPH ===== */
+        .contrib-graph {
+            border: 1px solid var(--border); border-radius: 12px;
+            padding: 20px; margin-bottom: 32px; background: var(--bg-card);
+            overflow-x: auto;
+        }
+        .contrib-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .contrib-title { font-size: 14px; font-weight: 600; }
+        .contrib-legend { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text-dim); }
+        .contrib-legend span { font-size: 11px; }
+        .graph-squares { display: flex; flex-wrap: wrap; gap: 3px; }
+        .g-sq {
+            width: 11px; height: 11px; border-radius: 2px; background: var(--bg-secondary);
+            outline: 1px solid rgba(255,255,255,0.03); transition: background 0.2s;
+        }
+        .g-sq:hover { outline-color: var(--accent); }
+        .g-l1 { background: #0e4429; } .g-l2 { background: #006d32; } .g-l3 { background: #26a641; } .g-l4 { background: #39d353; }
+
+        /* ===== NO RESULTS ===== */
+        .no-results {
+            display: none; padding: 48px; text-align: center; color: var(--text-muted);
+            border: 1px dashed var(--border); border-radius: 12px; grid-column: span 2;
+            font-size: 15px;
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            border-top: 1px solid var(--border); padding: 40px 24px;
+            text-align: center; font-size: 12px; color: var(--text-dim);
+            background: var(--bg-primary); position: relative; z-index: 1;
+        }
+        .site-footer a { color: var(--text-muted); margin: 0 12px; font-weight: 500; transition: 0.2s; }
+        .site-footer a:hover { color: var(--accent); }
+        .footer-links { margin-top: 10px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            z-index: 1000; display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: 0.3s; padding: 16px;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px;
+            width: 100%; max-width: 640px; max-height: 90vh; display: flex; flex-direction: column;
+            transform: scale(0.95) translateY(10px); transition: 0.3s;
+            box-shadow: 0 0 0 1px var(--border), 0 24px 48px rgba(0,0,0,0.6);
+        }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+
+        .modal-header {
+            padding: 20px 24px; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+        }
+        .modal-title { font-size: 18px; font-weight: 700; word-break: break-word; padding-right: 16px; letter-spacing: -0.01em; }
+        .close-btn { background: var(--btn-bg); border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; padding: 6px; flex-shrink: 0; border-radius: 8px; transition: 0.2s; display: flex; }
+        .close-btn:hover { color: var(--text-main); background: var(--btn-hover); }
+        .close-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+        .modal-body { padding: 24px; overflow-y: auto; flex-grow: 1; }
+        .modal-img { width: 100%; height: auto; border-radius: 10px; margin-bottom: 16px; border: 1px solid var(--border); }
+        .modal-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+        .modal-tech { margin-top: 16px; }
+        .modal-tech-label { font-size: 12px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+        .modal-tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .modal-tech-tag { background: var(--bg-primary); border: 1px solid var(--border); padding: 4px 12px; border-radius: 6px; font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+        .modal-footer {
+            padding: 16px 24px; border-top: 1px solid var(--border);
+            display: flex; justify-content: flex-end; gap: 10px; flex-shrink: 0; flex-wrap: wrap;
+        }
+        .btn-cancel {
+            background: var(--btn-bg); border: 1px solid var(--border); color: var(--text-main);
+            padding: 8px 20px; border-radius: 10px; font-weight: 600; cursor: pointer;
+            font-size: 14px; font-family: inherit; transition: 0.2s;
+        }
+        .btn-cancel:hover { background: var(--btn-hover); }
+        .btn-primary {
+            background: var(--btn-primary); border: 1px solid transparent; color: #fff;
+            padding: 8px 20px; border-radius: 10px; font-weight: 600; cursor: pointer;
+            font-size: 14px; font-family: inherit; transition: 0.2s;
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+        .btn-primary:hover { background: var(--btn-primary-hover); color: #fff; }
+
+        .icon { display: inline-block; vertical-align: text-bottom; fill: currentColor; }
+
+        /* ===== SCROLL TO TOP BUTTON ===== */
+        .scroll-top {
+            position: fixed; bottom: 24px; right: 24px; z-index: 99;
+            background: var(--accent); color: #fff; border: none;
+            width: 44px; height: 44px; border-radius: 12px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+        }
+        .scroll-top.visible { opacity: 1; visibility: visible; }
+        .scroll-top:hover { transform: translateY(-2px); }
+        .scroll-top svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .tech-grid { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .header-nav { display: none; }
+            .mobile-menu-btn { display: block; }
+            .container { flex-direction: column; padding: 16px; gap: 16px; }
+            .sidebar { width: 100%; }
+            .sidebar-sticky { position: static; }
+            .sidebar-header { flex-direction: row; align-items: center; gap: 16px; margin-bottom: 16px; }
+            .avatar { width: 80px; height: 80px; margin-bottom: 0; max-width: none; }
+            .vcard-names { margin-bottom: 0; }
+            .vcard-fullname { font-size: 20px; }
+            .vcard-username { font-size: 14px; }
+            .status-indicator { bottom: 2px; right: -4px; width: 16px; height: 16px; }
+            .avatar-wrapper { width: 80px; flex-shrink: 0; }
+            .repo-grid { grid-template-columns: 1fr; gap: 16px; }
+            .no-results { grid-column: span 1; }
+            .stats-row { grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+            .stat-number { font-size: 24px; }
+            .local-search { max-width: 100%; }
+            .modal-footer { flex-direction: column; }
+            .modal-footer button, .modal-footer a { width: 100%; text-align: center; justify-content: center; }
+            .tech-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { animation: fadeInUp 0.5s ease forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-left">
+            <div class="header-logo-container">
+                <button class="mobile-menu-btn">
+                    <svg viewBox="0 0 16 16" width="24" height="24"><path d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path></svg>
+                </button>
+                <a href="#" class="header-logo">
+                    <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                </a>
+                <nav class="header-nav">
+                    <a href="https://github.com/Ario2006" target="_blank" class="header-nav-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/aryan-kumar-632713323/" target="_blank" class="header-nav-link">LinkedIn</a>
+                    <a href="mailto:aryan.krrrr@gmail.com" class="header-nav-link">Contact</a>
+                </nav>
+                <div style="width: 24px;"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTAINER ===== -->
+    <div class="container">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar">
+            <div class="sidebar-sticky">
+                <div class="sidebar-header">
+                    <div class="avatar-wrapper">
+                        <img src="https://avatars.githubusercontent.com/u/181634002?v=4" alt="Aryan Kumar" class="avatar">
+                        <div class="status-indicator" title="Available"></div>
+                    </div>
+                    <div class="vcard-names">
+                        <h1 class="vcard-fullname">Aryan Kumar</h1>
+                        <h2 class="vcard-username">Ario2006</h2>
+                    </div>
+                </div>
+
+                <div class="user-profile-bio">
+                    B.Tech CSE (AI/ML) student skilled in building across the stack — AI/ML, Data Analytics, Full-stack Web Development & DevOps. 100+ LeetCode problems solved, with a strong problem-solving mindset and a passion for building systems.
+                </div>
+
+                <a href="mailto:aryan.krrrr@gmail.com" class="btn-profile">
+                    <svg viewBox="0 0 16 16"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0114.25 14H1.75A1.75 1.75 0 010 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88Z"></path></svg>
+                    Get In Touch
+                </a>
+
+                <ul class="vcard-details">
+                    <li>
+                        <svg viewBox="0 0 16 16"><path d="M11.536 3.464a5 5 0 010 7.072L8 14.07l-3.536-3.535a5 5 0 117.072-7.072v.001zm1.06 8.132a6.5 6.5 0 10-9.192 0l3.535 3.536a1.5 1.5 0 002.122 0l3.535-3.536zM8 9a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+                        India
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 16 16"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0114.25 14H1.75A1.75 1.75 0 010 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V5.809L8.38 9.397a.75.75 0 01-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25v.32L8 7.88Z"></path></svg>
+                        <a href="mailto:aryan.krrrr@gmail.com">aryan.krrrr@gmail.com</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 16 16"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 114.95 4.95l-2.5 2.5a3.5 3.5 0 01-4.95 0 .751.751 0 01.018-1.042.751.751 0 011.042-.018 1.998 1.998 0 002.83 0l2.5-2.5a2.002 2.002 0 00-2.83-2.83l-1.25 1.25a.751.751 0 01-1.042-.018.751.751 0 01-.018-1.042Zm-4.69 9.64a1.998 1.998 0 002.83 0l1.25-1.25a.751.751 0 011.042.018.751.751 0 01.018 1.042l-1.25 1.25a3.5 3.5 0 11-4.95-4.95l2.5-2.5a3.5 3.5 0 014.95 0 .751.751 0 01-.018 1.042.751.751 0 01-1.042.018 1.998 1.998 0 00-2.83 0l-2.5 2.5a1.998 1.998 0 000 2.83Z"></path></svg>
+                        <a href="https://www.linkedin.com/in/aryan-kumar-632713323/" target="_blank">LinkedIn</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                        <a href="https://github.com/Ario2006" target="_blank">github.com/Ario2006</a>
+                    </li>
+                </ul>
+
+                <!-- Skills Section -->
+                <div class="skills-section" style="margin-bottom: 20px;">
+                    <h2>🤖 AI / ML</h2>
+                    <div class="skills-badges">
+                        <span class="badge badge-ai">TensorFlow</span>
+                        <span class="badge badge-ai">Keras</span>
+                        <span class="badge badge-ai">scikit-learn</span>
+                        <span class="badge badge-ai">OpenCV</span>
+                        <span class="badge badge-ai">Streamlit</span>
+                        <span class="badge badge-ai">FastAPI</span>
+                        <span class="badge badge-ai">HuggingFace</span>
+                    </div>
+                </div>
+                <div class="skills-section" style="margin-bottom: 20px;">
+                    <h2>🌐 Full-Stack</h2>
+                    <div class="skills-badges">
+                        <span class="badge badge-web">React</span>
+                        <span class="badge badge-web">Next.js</span>
+                        <span class="badge badge-web">TypeScript</span>
+                        <span class="badge badge-web">Node.js</span>
+                        <span class="badge badge-web">Express</span>
+                        <span class="badge badge-web">PostgreSQL</span>
+                        <span class="badge badge-web">Docker</span>
+                        <span class="badge badge-web">Redis</span>
+                        <span class="badge badge-web">Supabase</span>
+                    </div>
+                </div>
+                <div class="skills-section">
+                    <h2>📊 Data & Analytics</h2>
+                    <div class="skills-badges">
+                        <span class="badge badge-data">Python</span>
+                        <span class="badge badge-data">Pandas</span>
+                        <span class="badge badge-data">NumPy</span>
+                        <span class="badge badge-data">Tableau</span>
+                        <span class="badge badge-data">Power BI</span>
+                        <span class="badge badge-data">Looker</span>
+                        <span class="badge badge-data">Excel</span>
+                        <span class="badge badge-data">Matplotlib</span>
+                        <span class="badge badge-data">Plotly</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="content">
+
+            <!-- Stats Row -->
+            <div class="stats-row animate-in delay-1">
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">LeetCode Solved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Analytics Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">78k+</div>
+                    <div class="stat-label">Records Analysed</div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <nav class="UnderlineNav animate-in delay-2">
+                <div class="UnderlineNav-item">
+                    <svg viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
+                    Repositories <span class="repo-count" id="repo-count-badge">3</span>
+                </div>
+            </nav>
+
+            <!-- Filter Bar -->
+            <div class="repo-filter-bar animate-in delay-2">
+                <input type="text" id="repo-search" class="local-search" placeholder="Find a repository...">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="tableau">Tableau</button>
+                    <button class="filter-btn" data-filter="looker">Looker Studio</button>
+                    <button class="filter-btn" data-filter="excel">Excel / Sheets</button>
+                    <button class="filter-btn" data-filter="python">Python ETL</button>
+                </div>
+            </div>
+
+            <!-- ===== REPOSITORY CARDS ===== -->
+            <div class="repo-grid" id="repo-grid">
+
+                <!-- Project 1: F1 PitLane Analysis -->
+                <div class="repo-card open-modal-btn animate-in delay-3"
+                     data-category="tableau"
+                     data-title="F1-PitLane-Analysis"
+                     data-img="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80"
+                     data-link="https://github.com/Ario2006/F1-PitLane-Analysis"
+                     data-desc="Analysed 23k+ records and built a data analytics project analysing F1 performance by separating driver skill from car influence, modeling race strategy decisions, and evaluating reliability trends using ETL pipelines and Tableau dashboards."
+                     data-tech="Python, Pandas, NumPy, Tableau, Jupyter Notebooks, ETL Pipelines">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80" alt="F1 Analysis Cover" class="card-cover-image">
+                    </div>
+                    <div class="repo-card-body">
+                        <div class="repo-header">
+                            <div class="repo-title-group">
+                                <svg class="icon" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
+                                <a href="#" class="repo-title">F1-PitLane-Analysis</a>
+                            </div>
+                            <span class="repo-badge">Public</span>
+                        </div>
+                        <p class="repo-desc">Analysed 23k+ records separating driver skill from car influence, modeling race strategy decisions & reliability trends via ETL pipelines.</p>
+                        <div class="repo-tags">
+                            <span class="topic-tag">formula-1</span>
+                            <span class="topic-tag">etl-pipeline</span>
+                            <span class="topic-tag">data-analytics</span>
+                        </div>
+                        <div class="repo-footer">
+                            <span><span class="lang-color lang-python"></span> Python</span>
+                            <span><span class="lang-color lang-tableau"></span> Tableau</span>
+                            <span>📊 23k+ records</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Blinkit Sales Analysis -->
+                <div class="repo-card open-modal-btn animate-in delay-3"
+                     data-category="looker"
+                     data-title="Blinkit-Sales-Analysis"
+                     data-img="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
+                     data-link="https://github.com/Ario2006/Blinkit-Sales-Analysis"
+                     data-desc="Analysed 5k+ Blinkit business records and built an end-to-end analytics project uncovering customer behavior, feedback sentiment, marketing performance, delivery efficiency, and inventory trends through KPI modeling, data cleaning workflows, and interactive Looker Studio dashboards."
+                     data-tech="Microsoft Excel, Looker Studio, CSV, Pivot Tables, Data Cleaning, Dashboarding, KPI Analytics">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" alt="Blinkit Analysis Cover" class="card-cover-image">
+                    </div>
+                    <div class="repo-card-body">
+                        <div class="repo-header">
+                            <div class="repo-title-group">
+                                <svg class="icon" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
+                                <a href="#" class="repo-title">Blinkit-Sales-Analysis</a>
+                            </div>
+                            <span class="repo-badge">Public</span>
+                        </div>
+                        <p class="repo-desc">End-to-end analytics uncovering customer behavior, sentiment, marketing performance & delivery efficiency via interactive Looker dashboards.</p>
+                        <div class="repo-tags">
+                            <span class="topic-tag">sales-analytics</span>
+                            <span class="topic-tag">kpi-dashboard</span>
+                            <span class="topic-tag">looker-studio</span>
+                        </div>
+                        <div class="repo-footer">
+                            <span><span class="lang-color lang-excel"></span> Excel</span>
+                            <span><span class="lang-color lang-looker"></span> Looker Studio</span>
+                            <span>📊 5k+ records</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Customer Churn Analysis -->
+                <div class="repo-card open-modal-btn animate-in delay-4"
+                     data-category="excel"
+                     data-title="Customer-Churn-Analysis"
+                     data-img="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+                     data-link="https://github.com/Ario2006/Customer-Churn-Analysis"
+                     data-desc="End-to-end data analytics project analysing 50k+ records and identifying e-commerce customer churn patterns, quantifying revenue risk, and delivering actionable retention strategies through dashboards and KPI analysis."
+                     data-tech="Google Sheets, Excel, CSV, Pivot Tables, Statistical Analysis, Data Visualization, KPI Dashboards">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Churn Analysis Cover" class="card-cover-image">
+                    </div>
+                    <div class="repo-card-body">
+                        <div class="repo-header">
+                            <div class="repo-title-group">
+                                <svg class="icon" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
+                                <a href="#" class="repo-title">Customer-Churn-Analysis</a>
+                            </div>
+                            <span class="repo-badge">Public</span>
+                        </div>
+                        <p class="repo-desc">Analysed 50k+ e-commerce records identifying churn patterns, quantifying revenue risk & delivering retention strategies via KPI dashboards.</p>
+                        <div class="repo-tags">
+                            <span class="topic-tag">churn-analysis</span>
+                            <span class="topic-tag">retention</span>
+                            <span class="topic-tag">pivot-tables</span>
+                        </div>
+                        <div class="repo-footer">
+                            <span><span class="lang-color lang-excel"></span> Excel</span>
+                            <span>📊 50k+ records</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No Results Message -->
+                <div class="no-results" id="no-results-msg">
+                    No repositories match your search or filter.
+                </div>
+            </div>
+
+            <!-- ===== TECH STACK GRID ===== -->
+            <div class="tech-stack-section animate-in delay-3">
+                <div class="tech-stack-title">
+                    <svg viewBox="0 0 16 16"><path d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.5 4.75a.75.75 0 00-1.5 0v3.5a.75.75 0 00.37.65l2.5 1.5a.75.75 0 00.76-1.3L8.5 7.738V4.75z"></path></svg>
+                    Tech Proficiency
+                </div>
+                <div class="tech-grid">
+                    <!-- AI/ML -->
+                    <div class="tech-category">
+                        <div class="tech-cat-header">
+                            <span class="tech-cat-emoji">🤖</span> AI / Machine Learning
+                        </div>
+                        <div class="tech-items">
+                            <div class="tech-item">
+                                <span class="tech-item-name">TensorFlow / Keras</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-ai" data-width="85%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">scikit-learn</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-ai" data-width="80%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">OpenCV</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-ai" data-width="70%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">HuggingFace</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-ai" data-width="65%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">Streamlit / FastAPI</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-ai" data-width="75%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Full-Stack -->
+                    <div class="tech-category">
+                        <div class="tech-cat-header">
+                            <span class="tech-cat-emoji">🌐</span> Full-Stack Development
+                        </div>
+                        <div class="tech-items">
+                            <div class="tech-item">
+                                <span class="tech-item-name">React / Next.js</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-web" data-width="88%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">TypeScript</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-web" data-width="82%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">Node.js / Express</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-web" data-width="85%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">PostgreSQL</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-web" data-width="75%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">Docker / Redis</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-web" data-width="68%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Data & Analytics -->
+                    <div class="tech-category">
+                        <div class="tech-cat-header">
+                            <span class="tech-cat-emoji">📊</span> Data & Analytics
+                        </div>
+                        <div class="tech-items">
+                            <div class="tech-item">
+                                <span class="tech-item-name">Python / Pandas</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-data" data-width="92%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">Tableau / Power BI</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-data" data-width="85%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">Looker Studio</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-data" data-width="80%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">Excel / Sheets</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-data" data-width="90%"></div></div>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-item-name">Matplotlib / Plotly</span>
+                                <div class="tech-bar-bg"><div class="tech-bar bar-data" data-width="78%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CONTRIBUTION GRAPH ===== -->
+            <div class="contrib-graph animate-in delay-4">
+                <div class="contrib-header">
+                    <div class="contrib-title">📅 Contribution Activity</div>
+                    <div class="contrib-legend">
+                        <span>Less</span>
+                        <div class="g-sq" style="width:10px;height:10px;"></div>
+                        <div class="g-sq g-l1" style="width:10px;height:10px;"></div>
+                        <div class="g-sq g-l2" style="width:10px;height:10px;"></div>
+                        <div class="g-sq g-l3" style="width:10px;height:10px;"></div>
+                        <div class="g-sq g-l4" style="width:10px;height:10px;"></div>
+                        <span>More</span>
+                    </div>
+                </div>
+                <div class="graph-squares" id="contrib-squares"></div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <p>&copy; <span id="current-year"></span> Aryan Kumar. Built with ❤️ and lots of ☕</p>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/aryan-kumar-632713323/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Ario2006" target="_blank">GitHub</a>
+            <a href="mailto:aryan.krrrr@gmail.com">Contact</a>
+        </div>
+    </footer>
+
+    <!-- ===== SCROLL TO TOP ===== -->
+    <button class="scroll-top" id="scroll-top-btn" title="Back to top">
+        <svg viewBox="0 0 16 16"><path d="M3.22 9.78a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 0l4.25 4.25a.751.751 0 01-.018 1.042.751.751 0 01-1.042.018L8 6.06 4.28 9.78a.75.75 0 01-1.06 0z"></path></svg>
+    </button>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="m-title">Project Title</div>
+                <button class="close-btn" id="close-modal">
+                    <svg viewBox="0 0 16 16"><path d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="" id="m-img" alt="Project Cover" class="modal-img">
+                <p class="modal-desc" id="m-desc">Full description goes here.</p>
+                <div class="modal-tech">
+                    <div class="modal-tech-label">Tech Stack</div>
+                    <div class="modal-tech-tags" id="m-tech"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" id="cancel-modal">Cancel</button>
+                <a href="#" target="_blank" class="btn-primary" id="m-link">
+                    <svg viewBox="0 0 16 16" width="16" height="16" style="fill:currentColor;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                    View Repository
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // --- 1. DYNAMIC FOOTER YEAR ---
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- 2. CONTRIBUTION GRAPH GENERATION ---
+        (function generateContribGraph() {
+            const container = document.getElementById('contrib-squares');
+            const levels = ['', 'g-l1', 'g-l2', 'g-l3', 'g-l4'];
+            // Weighted random — more empty squares for realism
+            const weights = [0.35, 0.25, 0.18, 0.13, 0.09];
+
+            function weightedRandom() {
+                const r = Math.random();
+                let cumulative = 0;
+                for (let i = 0; i < weights.length; i++) {
+                    cumulative += weights[i];
+                    if (r <= cumulative) return levels[i];
+                }
+                return levels[0];
+            }
+
+            let html = '';
+            for (let i = 0; i < 364; i++) {
+                const level = weightedRandom();
+                html += `<div class="g-sq ${level}"></div>`;
+            }
+            container.innerHTML = html;
+        })();
+
+        // --- 3. TECH BAR ANIMATION ON SCROLL ---
+        const techBars = document.querySelectorAll('.tech-bar');
+        const techObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.getAttribute('data-width');
+                    techObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        techBars.forEach(bar => techObserver.observe(bar));
+
+        // --- 4. SEARCH AND FILTER ---
+        const searchInput = document.getElementById('repo-search');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const repoCards = document.querySelectorAll('.repo-card');
+        const repoCountBadge = document.getElementById('repo-count-badge');
+        const noResultsMsg = document.getElementById('no-results-msg');
+
+        let currentSearchTerm = '';
+        let currentFilter = 'all';
+
+        function filterRepositories() {
+            let visibleCount = 0;
+            repoCards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const desc = card.getAttribute('data-desc').toLowerCase();
+                const category = card.getAttribute('data-category');
+
+                const matchesSearch = title.includes(currentSearchTerm) || desc.includes(currentSearchTerm);
+                const matchesFilter = currentFilter === 'all' || category === currentFilter;
+
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            repoCountBadge.innerText = visibleCount;
+            noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            currentSearchTerm = e.target.value.toLowerCase();
+            filterRepositories();
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.getAttribute('data-filter');
+                filterRepositories();
+            });
+        });
+
+        filterRepositories();
+
+        // --- 5. MODAL LOGIC ---
+        const modal = document.getElementById('modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const cancelModalBtn = document.getElementById('cancel-modal');
+        const mTitle = document.getElementById('m-title');
+        const mDesc = document.getElementById('m-desc');
+        const mImg = document.getElementById('m-img');
+        const mLink = document.getElementById('m-link');
+        const mTech = document.getElementById('m-tech');
+
+        repoCards.forEach(project => {
+            project.addEventListener('click', () => {
+                mTitle.textContent = project.getAttribute('data-title');
+                mDesc.textContent = project.getAttribute('data-desc');
+                mImg.src = project.getAttribute('data-img');
+                mLink.href = project.getAttribute('data-link');
+
+                // Populate tech tags
+                const techStack = project.getAttribute('data-tech');
+                if (techStack) {
+                    mTech.innerHTML = techStack.split(',').map(t =>
+                        `<span class="modal-tech-tag">${t.trim()}</span>`
+                    ).join('');
+                }
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        closeModalBtn.addEventListener('click', closeModal);
+        cancelModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+        // --- 6. SCROLL TO TOP BUTTON ---
+        const scrollTopBtn = document.getElementById('scroll-top-btn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // --- 7. SCROLL ANIMATIONS ---
+        const animateElements = document.querySelectorAll('.animate-in');
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animateElements.forEach(el => scrollObserver.observe(el));
+    </script>
+</body>
+</html>
