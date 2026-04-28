@@ -237,18 +237,33 @@
 
         /* --- CONTRIBUTION GRAPH --- */
         .contrib-section {
-            border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 20px; margin-bottom: 48px;
-        }
-        .contrib-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-        .contrib-title { font-size: 13px; font-weight: 500; color: var(--text-secondary); }
-        .contrib-legend { display: flex; align-items: center; gap: 3px; font-size: 11px; color: var(--text-dim); }
-        .graph-squares { display: flex; flex-wrap: wrap; gap: 3px; }
-        .sq { width: 10px; height: 10px; border-radius: 2px; background: var(--bg-raised); }
-        .sq-1 { background: #0e4429; }
-        .sq-2 { background: #006d32; }
-        .sq-3 { background: #26a641; }
-        .sq-4 { background: #39d353; }
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 48px;
+}
+.contrib-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.contrib-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+.contrib-graph-img {
+    width: 100%;
+    overflow-x: auto;
+}
+.contrib-graph-img img {
+    width: 100%;
+    min-width: 640px;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
 
         /* --- TECH TABLE --- */
         .tech-section {
@@ -635,21 +650,19 @@
             </div>
 
             <!-- Contribution Graph -->
-            <div class="contrib-section">
-                <div class="contrib-header">
-                    <div class="contrib-title">Contributions</div>
-                    <div class="contrib-legend">
-                        <span>Less</span>
-                        <div class="sq" style="width:9px;height:9px;display:inline-block;"></div>
-                        <div class="sq sq-1" style="width:9px;height:9px;display:inline-block;"></div>
-                        <div class="sq sq-2" style="width:9px;height:9px;display:inline-block;"></div>
-                        <div class="sq sq-3" style="width:9px;height:9px;display:inline-block;"></div>
-                        <div class="sq sq-4" style="width:9px;height:9px;display:inline-block;"></div>
-                        <span>More</span>
-                    </div>
-                </div>
-                <div class="graph-squares" id="contrib-squares"></div>
-            </div>
+<div class="contrib-section">
+    <div class="contrib-header">
+        <div class="contrib-title">Contributions</div>
+        <a href="https://github.com/Ario2006" target="_blank" style="font-size: 12px; color: var(--text-dim);">View on GitHub</a>
+    </div>
+    <div class="contrib-graph-img">
+        <img
+            src="https://ghchart.rshah.org/1a1a2e/Ario2006"
+            alt="Ario2006's GitHub Contribution Graph"
+            id="contrib-img"
+        />
+    </div>
+</div>
 
         </main>
     </div>
@@ -695,21 +708,21 @@
 
         // Contribution graph
         (function() {
-            const el = document.getElementById('contrib-squares');
-            const weights = [0.40, 0.22, 0.17, 0.12, 0.09];
-            const levels = ['', 'sq-1', 'sq-2', 'sq-3', 'sq-4'];
-            let html = '';
-            for (let i = 0; i < 364; i++) {
-                let r = Math.random(), c = 0;
-                let lvl = '';
-                for (let j = 0; j < weights.length; j++) {
-                    c += weights[j];
-                    if (r <= c) { lvl = levels[j]; break; }
-                }
-                html += '<div class="sq ' + lvl + '"></div>';
-            }
-            el.innerHTML = html;
-        })();
+    const el = document.getElementById('contrib-squares');
+    const weights = [0.40, 0.22, 0.17, 0.12, 0.09];
+    const levels = ['', 'sq-1', 'sq-2', 'sq-3', 'sq-4'];
+    let html = '';
+    for (let i = 0; i < 364; i++) {
+        let r = Math.random(), c = 0;
+        let lvl = '';
+        for (let j = 0; j < weights.length; j++) {
+            c += weights[j];
+            if (r <= c) { lvl = levels[j]; break; }
+        }
+        html += '<div class="sq ' + lvl + '"></div>';
+    }
+    el.innerHTML = html;
+})();
 
         // Search + filter
         const searchInput = document.getElementById('repo-search');
