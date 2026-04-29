@@ -239,88 +239,39 @@
 
         /* --- CONTRIBUTION GRAPH --- */
         .contrib-section {
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            margin-bottom: 48px;
-            background:
-                radial-gradient(circle at 0% 0%, rgba(74, 222, 128, 0.06), transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(96, 165, 250, 0.05), transparent 50%),
-                var(--bg-raised);
-            position: relative;
-            overflow: hidden;
-        }
-        .contrib-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.4), transparent);
-        }
-        .contrib-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-        }
-        .contrib-title {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .contrib-title::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
-        }
-        .contrib-link {
-            font-size: 12px;
-            color: var(--text-secondary);
-            transition: color 0.15s;
-        }
-        .contrib-link:hover { color: var(--green); }
-        .contrib-graph-img {
-            width: 100%;
-            overflow-x: auto;
-            padding: 8px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-        }
-        .contrib-graph-img img {
-            width: 100%;
-            min-width: 640px;
-            height: auto;
-            display: block;
-            border-radius: 4px;
-            filter: drop-shadow(0 0 12px rgba(74, 222, 128, 0.08));
-        }
-        .contrib-legend {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 6px;
-            margin-top: 12px;
-            font-size: 11px;
-            color: var(--text-dim);
-        }
-        .contrib-legend-squares { display: flex; gap: 3px; }
-        .contrib-legend-sq {
-            width: 10px;
-            height: 10px;
-            border-radius: 2px;
-        }
-        .legend-0 { background: #161b22; border: 1px solid rgba(255,255,255,0.04); }
-        .legend-1 { background: #0e4429; }
-        .legend-2 { background: #006d32; }
-        .legend-3 { background: #26a641; }
-        .legend-4 { background: #4ade80; box-shadow: 0 0 6px rgba(74, 222, 128, 0.4); }
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 48px;
+    background: var(--bg-raised);
+}
+.contrib-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+.contrib-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+}
+.contrib-link {
+    font-size: 12px;
+    color: var(--text-secondary);
+    transition: color 0.15s;
+}
+.contrib-link:hover { color: var(--text); }
+.contrib-graph-img {
+    width: 100%;
+    overflow-x: auto;
+}
+.contrib-graph-img img {
+    width: 100%;
+    min-width: 640px;
+    height: auto;
+    display: block;
+}
 
         /* --- TECH TABLE --- */
         .tech-section {
@@ -643,29 +594,18 @@
 
             <!-- Contribution Graph (BEAUTIFIED) -->
             <div class="contrib-section">
-                <div class="contrib-header">
-                    <div class="contrib-title">Contributions</div>
-                    <a href="https://github.com/Ario2006" target="_blank" class="contrib-link">View on GitHub →</a>
-                </div>
-                <div class="contrib-graph-img">
-                    <img
-                        src="https://ghchart.rshah.org/4ade80/Ario2006"
-                        alt="Ario2006's GitHub Contribution Graph"
-                        id="contrib-img"
-                    />
-                </div>
-                <div class="contrib-legend">
-                    <span>Less</span>
-                    <div class="contrib-legend-squares">
-                        <span class="contrib-legend-sq legend-0"></span>
-                        <span class="contrib-legend-sq legend-1"></span>
-                        <span class="contrib-legend-sq legend-2"></span>
-                        <span class="contrib-legend-sq legend-3"></span>
-                        <span class="contrib-legend-sq legend-4"></span>
-                    </div>
-                    <span>More</span>
-                </div>
-            </div>
+    <div class="contrib-header">
+        <div class="contrib-title">Contributions</div>
+        <a href="https://github.com/Ario2006" target="_blank" class="contrib-link">View on GitHub →</a>
+    </div>
+    <div class="contrib-graph-img">
+        <img
+            src="https://ghchart.rshah.org/4ade80/Ario2006"
+            alt="Ario2006's GitHub Contribution Graph"
+            id="contrib-img"
+        />
+    </div>
+</div>
 
         </main>
     </div>
