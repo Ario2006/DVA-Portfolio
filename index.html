@@ -191,11 +191,13 @@
             background: var(--bg);
             overflow: hidden;
             cursor: pointer;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, transform 0.2s;
             display: flex;
             flex-direction: column;
+            text-decoration: none;
+            color: inherit;
         }
-        .project-card:hover { border-color: var(--border-hover); }
+        .project-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
 
         .card-img-wrap { overflow: hidden; height: 148px; border-bottom: 1px solid var(--border); }
         .card-img {
@@ -237,33 +239,88 @@
 
         /* --- CONTRIBUTION GRAPH --- */
         .contrib-section {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin-bottom: 48px;
-}
-.contrib-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-}
-.contrib-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-secondary);
-}
-.contrib-graph-img {
-    width: 100%;
-    overflow-x: auto;
-}
-.contrib-graph-img img {
-    width: 100%;
-    min-width: 640px;
-    height: auto;
-    display: block;
-    border-radius: 4px;
-}
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 48px;
+            background:
+                radial-gradient(circle at 0% 0%, rgba(74, 222, 128, 0.06), transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(96, 165, 250, 0.05), transparent 50%),
+                var(--bg-raised);
+            position: relative;
+            overflow: hidden;
+        }
+        .contrib-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.4), transparent);
+        }
+        .contrib-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+        .contrib-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contrib-title::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+        }
+        .contrib-link {
+            font-size: 12px;
+            color: var(--text-secondary);
+            transition: color 0.15s;
+        }
+        .contrib-link:hover { color: var(--green); }
+        .contrib-graph-img {
+            width: 100%;
+            overflow-x: auto;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .contrib-graph-img img {
+            width: 100%;
+            min-width: 640px;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            filter: drop-shadow(0 0 12px rgba(74, 222, 128, 0.08));
+        }
+        .contrib-legend {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+        .contrib-legend-squares { display: flex; gap: 3px; }
+        .contrib-legend-sq {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+        .legend-0 { background: #161b22; border: 1px solid rgba(255,255,255,0.04); }
+        .legend-1 { background: #0e4429; }
+        .legend-2 { background: #006d32; }
+        .legend-3 { background: #26a641; }
+        .legend-4 { background: #4ade80; box-shadow: 0 0 6px rgba(74, 222, 128, 0.4); }
 
         /* --- TECH TABLE --- */
         .tech-section {
@@ -304,69 +361,6 @@
         .footer-links a { color: var(--text-dim); margin: 0 10px; transition: color 0.15s; }
         .footer-links a:hover { color: var(--text-secondary); }
 
-        /* --- MODAL --- */
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-            z-index: 1000; display: flex; justify-content: center; align-items: center;
-            opacity: 0; visibility: hidden; transition: opacity 0.2s; padding: 16px;
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-box {
-            background: var(--bg-raised); border: 1px solid var(--border);
-            border-radius: 10px; width: 100%; max-width: 560px; max-height: 85vh;
-            display: flex; flex-direction: column;
-            transform: translateY(8px); transition: transform 0.2s;
-        }
-        .modal-overlay.active .modal-box { transform: translateY(0); }
-
-        .modal-top {
-            padding: 16px 20px; border-bottom: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .modal-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
-        .modal-close {
-            background: none; border: none; color: var(--text-dim);
-            cursor: pointer; padding: 4px; display: flex;
-        }
-        .modal-close:hover { color: var(--text-secondary); }
-        .modal-close svg { width: 16px; height: 16px; fill: currentColor; }
-
-        .modal-body { padding: 20px; overflow-y: auto; flex-grow: 1; }
-        .modal-img {
-            width: 100%; border-radius: 6px; margin-bottom: 16px;
-            border: 1px solid var(--border); filter: brightness(0.9);
-        }
-        .modal-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
-        .modal-stack-label {
-            font-size: 11px; font-weight: 500; color: var(--text-dim);
-            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;
-        }
-        .modal-stack-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-        .modal-stack-tag {
-            font-size: 12px; background: var(--tag-bg); border: 1px solid var(--border);
-            padding: 3px 10px; border-radius: 4px; color: var(--text-secondary);
-        }
-
-        .modal-bottom {
-            padding: 14px 20px; border-top: 1px solid var(--border);
-            display: flex; justify-content: flex-end; gap: 8px;
-        }
-        .btn-close-modal {
-            background: transparent; border: 1px solid var(--border);
-            color: var(--text-secondary); padding: 6px 16px; border-radius: 6px;
-            font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit;
-            transition: all 0.15s;
-        }
-        .btn-close-modal:hover { border-color: var(--border-hover); color: var(--text); }
-        .btn-repo-link {
-            background: var(--text); color: var(--bg); padding: 6px 16px;
-            border-radius: 6px; font-size: 13px; font-weight: 500;
-            border: none; cursor: pointer; font-family: inherit;
-            transition: opacity 0.15s; display: inline-flex; align-items: center; gap: 6px;
-        }
-        .btn-repo-link:hover { opacity: 0.85; color: var(--bg); }
-
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .header-nav { display: none; }
@@ -381,8 +375,6 @@
             .tech-row { grid-template-columns: 1fr; }
             .tech-label { border-right: none; border-bottom: 1px solid var(--border); }
             .search-input { max-width: 100%; }
-            .modal-bottom { flex-direction: column; }
-            .modal-bottom button, .modal-bottom a { width: 100%; text-align: center; justify-content: center; }
         }
     </style>
 </head>
@@ -510,19 +502,19 @@
                 </div>
             </div>
 
-            <!-- Project Cards -->
+            <!-- Project Cards (now anchor tags linking directly to GitHub) -->
             <div class="project-grid" id="repo-grid">
 
                 <!-- F1 PitLane Analysis -->
-                <div class="project-card"
-                     data-category="tableau"
-                     data-title="F1-PitLane-Analysis"
-                     data-img="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80"
-                     data-link="https://github.com/Ario2006/F1-PitLane-Analysis"
-                     data-desc="Analysed 23k+ records and built a data analytics project analysing F1 performance by separating driver skill from car influence, modeling race strategy decisions, and evaluating reliability trends using ETL pipelines and Tableau dashboards."
-                     data-tech="Python, Pandas, NumPy, Tableau, Jupyter Notebooks, ETL Pipelines">
+                <a class="project-card"
+                   href="https://github.com/Ario2006/F1-PitLane-Analysis"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   data-category="tableau"
+                   data-title="F1-PitLane-Analysis"
+                   data-desc="Analysed 23k+ records and built a data analytics project analysing F1 performance by separating driver skill from car influence, modeling race strategy decisions, and evaluating reliability trends using ETL pipelines and Tableau dashboards.">
                     <div class="card-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80" alt="F1 Analysis" class="card-img">
+                        <img src="https://github.com/Ario2006/F1-PitLane-Analysis/blob/main/tableau/screenshots/Driver%20Skill%20Intelligence%20Decoupling%20Performance.png?raw=true" alt="F1 Analysis" class="card-img">
                     </div>
                     <div class="card-body">
                         <div class="card-top">
@@ -540,18 +532,18 @@
                             <span><span class="lang-dot dot-tableau"></span>Tableau</span>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- Blinkit Sales Analysis -->
-                <div class="project-card"
-                     data-category="looker"
-                     data-title="Blinkit-Sales-Analysis"
-                     data-img="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
-                     data-link="https://github.com/Ario2006/Blinkit-Sales-Analysis"
-                     data-desc="Analysed 5k+ Blinkit business records and built an end-to-end analytics project uncovering customer behavior, feedback sentiment, marketing performance, delivery efficiency, and inventory trends through KPI modeling, data cleaning workflows, and interactive Looker Studio dashboards."
-                     data-tech="Microsoft Excel, Looker Studio, CSV, Pivot Tables, Data Cleaning, Dashboarding, KPI Analytics">
+                <a class="project-card"
+                   href="https://github.com/Ario2006/Blinkit-Sales-Analysis"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   data-category="looker"
+                   data-title="Blinkit-Sales-Analysis"
+                   data-desc="Analysed 5k+ Blinkit business records and built an end-to-end analytics project uncovering customer behavior, feedback sentiment, marketing performance, delivery efficiency, and inventory trends through KPI modeling, data cleaning workflows, and interactive Looker Studio dashboards.">
                     <div class="card-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" alt="Blinkit Analysis" class="card-img">
+                        <img src="https://github.com/Ario2006/Blinkit-Sales-Analysis/blob/main/Looker_Studio_Dashboard/Dashboard.png?raw=true" alt="Blinkit Analysis" class="card-img">
                     </div>
                     <div class="card-body">
                         <div class="card-top">
@@ -569,18 +561,18 @@
                             <span><span class="lang-dot dot-looker"></span>Looker Studio</span>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- Customer Churn Analysis -->
-                <div class="project-card"
-                     data-category="excel"
-                     data-title="Customer-Churn-Analysis"
-                     data-img="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
-                     data-link="https://github.com/Ario2006/Customer-Churn-Analysis"
-                     data-desc="End-to-end data analytics project analysing 50k+ records and identifying e-commerce customer churn patterns, quantifying revenue risk, and delivering actionable retention strategies through dashboards and KPI analysis."
-                     data-tech="Google Sheets, Excel, CSV, Pivot Tables, Statistical Analysis, Data Visualization, KPI Dashboards">
+                <a class="project-card"
+                   href="https://github.com/Ario2006/Customer-Churn-Analysis"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   data-category="excel"
+                   data-title="Customer-Churn-Analysis"
+                   data-desc="End-to-end data analytics project analysing 50k+ records and identifying e-commerce customer churn patterns, quantifying revenue risk, and delivering actionable retention strategies through dashboards and KPI analysis.">
                     <div class="card-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Churn Analysis" class="card-img">
+                        <img src="https://github.com/Ario2006/Customer-Churn-Analysis/blob/main/4.%20Dashboard/dashboard_img1.png?raw=true" alt="Churn Analysis" class="card-img">
                     </div>
                     <div class="card-body">
                         <div class="card-top">
@@ -598,7 +590,7 @@
                             <span><span class="lang-dot dot-excel"></span>Google Sheets</span>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <div class="no-results" id="no-results-msg">No projects match your search or filter.</div>
             </div>
@@ -649,20 +641,31 @@
                 </div>
             </div>
 
-            <!-- Contribution Graph -->
-<div class="contrib-section">
-    <div class="contrib-header">
-        <div class="contrib-title">Contributions</div>
-        <a href="https://github.com/Ario2006" target="_blank" style="font-size: 12px; color: var(--text-dim);">View on GitHub</a>
-    </div>
-    <div class="contrib-graph-img">
-        <img
-            src="https://ghchart.rshah.org/1a1a2e/Ario2006"
-            alt="Ario2006's GitHub Contribution Graph"
-            id="contrib-img"
-        />
-    </div>
-</div>
+            <!-- Contribution Graph (BEAUTIFIED) -->
+            <div class="contrib-section">
+                <div class="contrib-header">
+                    <div class="contrib-title">Contributions</div>
+                    <a href="https://github.com/Ario2006" target="_blank" class="contrib-link">View on GitHub →</a>
+                </div>
+                <div class="contrib-graph-img">
+                    <img
+                        src="https://ghchart.rshah.org/4ade80/Ario2006"
+                        alt="Ario2006's GitHub Contribution Graph"
+                        id="contrib-img"
+                    />
+                </div>
+                <div class="contrib-legend">
+                    <span>Less</span>
+                    <div class="contrib-legend-squares">
+                        <span class="contrib-legend-sq legend-0"></span>
+                        <span class="contrib-legend-sq legend-1"></span>
+                        <span class="contrib-legend-sq legend-2"></span>
+                        <span class="contrib-legend-sq legend-3"></span>
+                        <span class="contrib-legend-sq legend-4"></span>
+                    </div>
+                    <span>More</span>
+                </div>
+            </div>
 
         </main>
     </div>
@@ -677,52 +680,10 @@
         </div>
     </footer>
 
-    <!-- MODAL -->
-    <div class="modal-overlay" id="modal">
-        <div class="modal-box">
-            <div class="modal-top">
-                <div class="modal-title" id="m-title"></div>
-                <button class="modal-close" id="close-modal">
-                    <svg viewBox="0 0 16 16"><path d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="" id="m-img" alt="Project" class="modal-img">
-                <p class="modal-desc" id="m-desc"></p>
-                <div>
-                    <div class="modal-stack-label">Tech Stack</div>
-                    <div class="modal-stack-tags" id="m-tech"></div>
-                </div>
-            </div>
-            <div class="modal-bottom">
-                <button class="btn-close-modal" id="cancel-modal">Close</button>
-                <a href="#" target="_blank" class="btn-repo-link" id="m-link">View Repository</a>
-            </div>
-        </div>
-    </div>
-
     <!-- SCRIPTS -->
     <script>
         // Footer year
         document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Contribution graph
-        (function() {
-    const el = document.getElementById('contrib-squares');
-    const weights = [0.09, 0.12, 0.17, 0.22, 0.40];
-    const levels = ['', 'sq-1', 'sq-2', 'sq-3', 'sq-4'];
-    let html = '';
-    for (let i = 0; i < 364; i++) {
-        let r = Math.random(), c = 0;
-        let lvl = '';
-        for (let j = 0; j < weights.length; j++) {
-            c += weights[j];
-            if (r <= c) { lvl = levels[j]; break; }
-        }
-        html += '<div class="sq ' + lvl + '"></div>';
-    }
-    el.innerHTML = html;
-})();
 
         // Search + filter
         const searchInput = document.getElementById('repo-search');
@@ -749,44 +710,19 @@
             noResults.style.display = count === 0 ? 'block' : 'none';
         }
 
-        searchInput.addEventListener('input', e => { searchTerm = e.target.value.toLowerCase(); applyFilters(); });
+        searchInput.addEventListener('input', e => {
+            searchTerm = e.target.value.toLowerCase();
+            applyFilters();
+        });
+
         pills.forEach(p => p.addEventListener('click', () => {
             pills.forEach(b => b.classList.remove('active'));
             p.classList.add('active');
             activeFilter = p.dataset.filter;
             applyFilters();
         }));
+
         applyFilters();
-
-        // Modal
-        const modal = document.getElementById('modal');
-        const mTitle = document.getElementById('m-title');
-        const mDesc = document.getElementById('m-desc');
-        const mImg = document.getElementById('m-img');
-        const mLink = document.getElementById('m-link');
-        const mTech = document.getElementById('m-tech');
-
-        cards.forEach(card => card.addEventListener('click', () => {
-            mTitle.textContent = card.dataset.title;
-            mDesc.textContent = card.dataset.desc;
-            mImg.src = card.dataset.img;
-            mLink.href = card.dataset.link;
-            mTech.innerHTML = card.dataset.tech.split(',').map(t =>
-                '<span class="modal-stack-tag">' + t.trim() + '</span>'
-            ).join('');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }));
-
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        document.getElementById('close-modal').addEventListener('click', closeModal);
-        document.getElementById('cancel-modal').addEventListener('click', closeModal);
-        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
     </script>
 </body>
 </html>
